@@ -751,9 +751,7 @@ var tablaProveedores = (0,helpers_createDataTable__WEBPACK_IMPORTED_MODULE_2__["
   data: 'phone_number'
 }, {
   data: 'updated_at'
-}], {
-  ui: ['<button class="btn btn-primary btn-sm">Hi!</button>']
-});
+}]);
 tablaProveedores.columns.adjust();
 /* *
 ====================================================
@@ -821,7 +819,7 @@ SE LLENA EL FORMULARIO CON LOS DATOS CORRESPONDIENTES
 ======================================================
 */
 
-$('#providers tbody').on('click', '[data-edit]', /*#__PURE__*/function () {
+$('#proveedores tbody').on('click', '[data-edit]', /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(e) {
     var _getParentRowAndData, _getParentRowAndData2, parentRow, $data, $form;
 
@@ -854,7 +852,7 @@ SE BORRA UN REGISTRO A TRAVES DE UNA PETICIÓN DELETE
 =====================================================
 */
 
-$('#providers tbody').on('click', '[data-delete]', /*#__PURE__*/function () {
+$('#proveedores tbody').on('click', '[data-delete]', /*#__PURE__*/function () {
   var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(e) {
     var _getParentRowAndData3, _getParentRowAndData4, parentRow, $data, $response;
 

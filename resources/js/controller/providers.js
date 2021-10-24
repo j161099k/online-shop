@@ -15,11 +15,7 @@ const tablaProveedores = createDataTable('#proveedores', route('providers.index'
   { data: 'last_name' },
   { data: 'phone_number' },
   { data: 'updated_at' },
-], {
-  ui: [
-    '<button class="btn btn-primary btn-sm">Hi!</button>',
-  ]
-})
+])
 
 tablaProveedores.columns.adjust()
 
@@ -59,7 +55,7 @@ SE LLENA EL FORMULARIO CON LOS DATOS CORRESPONDIENTES
 ======================================================
 */
 
-$('#providers tbody').on('click', '[data-edit]', async function (e) {
+$('#proveedores tbody').on('click', '[data-edit]', async function (e) {
   const [parentRow, $data] = getParentRowAndData(e.target, tablaProveedores)
 
   const $form = $('#formularioProveedor')
@@ -78,7 +74,7 @@ SE BORRA UN REGISTRO A TRAVES DE UNA PETICIÓN DELETE
 =====================================================
 */
 
-$('#providers tbody').on('click', '[data-delete]', async function (e) {
+$('#proveedores tbody').on('click', '[data-delete]', async function (e) {
   const [parentRow, $data] = getParentRowAndData(e.target, tablaProveedores)
   const $response = await request(
     route('providers.destroy', { id: $data.id }),

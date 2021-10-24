@@ -27,7 +27,14 @@ class ProviderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $provider = new Provider();
+
+        $provider->first_name = $request->first_name;
+        $provider->last_name = $request->last_name;
+        $provider->phone_number = $request->phone_number;
+        $provider->save();
+
+        return $provider;
     }
 
     /**
@@ -50,7 +57,12 @@ class ProviderController extends Controller
      */
     public function update(Request $request, Provider $provider)
     {
-        //
+        $provider->first_name = $request->first_name;
+        $provider->last_name = $request->last_name;
+        $provider->phone_number = $request->phone_number;
+        $provider->save();
+
+        return $provider;
     }
 
     /**
@@ -61,6 +73,6 @@ class ProviderController extends Controller
      */
     public function destroy(Provider $provider)
     {
-        //
+        return $provider->delete() ? 'Deleted!!' : 'Not deleted';
     }
 }

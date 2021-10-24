@@ -20,7 +20,7 @@
 
 @section('content')
     {{-- Formulario de registro --}}
-    <x-modal label="registroIngrediente" title="Nuevo Proveedor" id="modal-formulario">
+    <x-modal label="registroProveedor" title="Nuevo Proveedor" id="modal-formulario">
         <x-form id="formularioProveedor" data-persist>
             <div class="form-group">
                 <div class="row">
@@ -31,7 +31,7 @@
                         <x-input name="last_name" label="Apellido" placeholder="García" />
                     </div>
                 </div>
-                <x-input type="tel" name="phone_number" label="Número de Telefono" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" />
+                <x-input type="tel" name="phone_number" label="Número de Telefono" />
             </div>
             <x-slot name="footer">
                 <x-button type="reset" class="btn-sm" style="outline-primary" data-dismiss="modal">
