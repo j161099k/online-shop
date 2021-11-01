@@ -15,11 +15,11 @@
                 {{ trim($slot) }}
             </textarea>
         @break
-        @case('select')
-            <select id="$attributes['name']" class="form-control {{ $attributes['class'] }}" {{ $attributes }}>
-                @foreach ($options as $option)
-                    <option value="{{ $option['value'] }}" {{ $option['selected']? 'selected' : '' }}>
-                        {{ $option['label'] }}
+        @case('picklist')
+            <select id="{{ $attributes['name'] }}" class="form-control {{ $attributes['class'] }}" {{ $attributes }}>
+                @foreach ($options as $value => $label)
+                    <option value="{{ $value }}">
+                        {{ $label }}
                     </option>
                 @endforeach
             </select>

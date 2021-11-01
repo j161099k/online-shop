@@ -17,9 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 })->name('root');
+
 Route::get('/test', function () {
-    $products = App\Models\Product::simplePaginate();
-    // dd($products);
+    $products = App\Models\Product::select('id', 'name')->get();
     return view('test', compact('products'));
 });
 

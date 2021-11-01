@@ -53,13 +53,24 @@
             </x-slot>
         </x-form>
     </x-modal>
-
-    <x-card>
-        <x-table id="combos" class="table-sm" data-selectable-rows
-            :headers="['Nombre', 'Existencia', 'Precio' ,'Actualizado en', 'Acciones']" />
-    </x-card>
+    <x-two-column-layout>
+        <x-slot name="biggerColumn">
+            <x-card>
+                <x-table id="combos" class="table-sm" data-selectable-rows
+                    :headers="['Nombre', 'Existencia', 'Precio' ,'Actualizado en', 'Acciones']" />
+            </x-card>
+        </x-slot>
+        <x-slot name="smallerColumn">
+            <x-card class="d-flex flex-grow">
+                <x-table id="combo_products" class="table-sm" data-selectable-rows :headers="['Nombre', 'Existencia', 'Precio']" />
+            </x-card>
+        </x-slot>
+    </x-two-column-layout>
 @endsection
 
 @section('js')
     <script src="https://cdn.datatables.net/fixedcolumns/4.0.0/js/fixedColumns.dataTables.js"></script>
+    <script>
+        $('#combo_products').DataTable(); 
+    </script>
 @endsection

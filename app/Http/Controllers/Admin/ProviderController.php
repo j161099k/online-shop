@@ -9,6 +9,16 @@ use Illuminate\Http\Request;
 class ProviderController extends Controller
 {
     /**
+     * Display the main controller view
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function load()
+    {
+        return view('admin.providers');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

@@ -14,23 +14,8 @@
         <div class="row">
             <div class="col-8">
                 <x-card class="my-5 p-2">
-                    <x-table id="datatable" :headers="['Name', 'Actions']">
-                        @foreach ($products as $product)
-                            <tr>
-                                <td>{{ $product->id }}</td>
-                                <td>{{ $product->name }}</td>
-                                <td>
-                                    <div class="d-inline-flex">
-                                        <x-button class="m-1">Hi!</x-button>
-                                        <x-button class="m-1">Bye!</x-button>
-                                    </div>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </x-table>
+                    <x-input type="picklist" name="options" :options="$products->pluck('name', 'id')" multiple />
                 </x-card>
-            </div>
-            <div class="col-4">
             </div>
         </div>
     </div>

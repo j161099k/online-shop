@@ -12,29 +12,4 @@ class AdminController extends Controller
     {
         return view('admin.home');
     }
-
-    public function providers()
-    {
-        return view('admin.providers');
-    }
-
-    public function ingredients()
-    {
-        return view('admin.ingredients');
-    }
-
-    public function orders()
-    {
-        return view('admin.orders');
-    }
-
-    public function products()
-    {
-        return view('admin.products');
-    }
-
-    public function combos()
-    {
-        return view('admin.combos');
-    }
 }
