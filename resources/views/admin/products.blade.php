@@ -55,7 +55,7 @@
     </x-modal>
     <x-card>
         <x-table id="productos" class="table-sm"
-            :headers="['ID', 'Nombre', 'Existencia', 'Precio' ,'Actualizado en', 'Acciones']" />
+            :headers="['Nombre', 'Existencia', 'Precio' ,'Actualizado en', 'Acciones']" />
     </x-card>
 @endsection
 

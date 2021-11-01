@@ -56,7 +56,7 @@
 
     <x-card>
         <x-table id="combos" class="table-sm" data-selectable-rows
-            :headers="['ID', 'Nombre', 'Existencia', 'Precio' ,'Actualizado en', 'Acciones']" />
+            :headers="['Nombre', 'Existencia', 'Precio' ,'Actualizado en', 'Acciones']" />
     </x-card>
 @endsection
 

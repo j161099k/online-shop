@@ -168,8 +168,6 @@ CREACIÓN DE LA TABLA CON DATATABLES
 */
 
 var tablaCombos = (0,helpers_createDataTable__WEBPACK_IMPORTED_MODULE_2__["default"])('#combos', route('combos.index'), [{
-  data: 'id'
-}, {
   data: 'name'
 }, {
   data: 'stock'
@@ -368,8 +366,6 @@ CREACIÓN DE LA TABLA CON DATATABLES
 */
 
 var tablaIngredientes = (0,helpers_createDataTable__WEBPACK_IMPORTED_MODULE_2__["default"])('#ingredientes', route('ingredients.index'), [{
-  data: 'id'
-}, {
   data: 'name'
 }, {
   data: 'stock'
@@ -554,8 +550,6 @@ CREACIÓN DE LA TABLA CON DATATABLES
 */
 
 var tablaProductos = (0,helpers_createDataTable__WEBPACK_IMPORTED_MODULE_2__["default"])('#productos', route('products.index'), [{
-  data: 'id'
-}, {
   data: 'name'
 }, {
   data: 'stock'

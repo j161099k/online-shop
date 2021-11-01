@@ -10,7 +10,6 @@ CREACIÓN DE LA TABLA CON DATATABLES
 ====================================
 */
 const tablaCombos = createDataTable('#combos', route('combos.index'), [
-  { data: 'id' },
   { data: 'name' },
   { data: 'stock' },
   { data: 'price' },

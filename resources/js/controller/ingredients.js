@@ -13,7 +13,7 @@ CREACIÓN DE LA TABLA CON DATATABLES
 const tablaIngredientes = createDataTable(
   '#ingredientes',
   route('ingredients.index'),
-  [{ data: 'id' }, { data: 'name' }, { data: 'stock' }, { data: 'updated_at' }],
+  [ { data: 'name' }, { data: 'stock' }, { data: 'updated_at' }],
 )
 
 tablaIngredientes.columns.adjust()

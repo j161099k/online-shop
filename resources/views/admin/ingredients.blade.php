@@ -45,7 +45,7 @@
 
     <x-card>
         <x-table id="ingredientes" class="table-sm" data-selectable-rows
-            :headers="[ 'ID', 'Nombre', 'Existencia','Actualizado', 'Acciones']">
+            :headers="['Nombre', 'Existencia','Actualizado', 'Acciones']">
         </x-table>
     </x-card>
 @endsection

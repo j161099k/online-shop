@@ -9,8 +9,7 @@ import submitForm from 'helpers/submitForm'
 CREACIÓN DE LA TABLA CON DATATABLES
 ====================================
 */
-const tablaProductos = createDataTable('#productos', route('products.index'), [
-  { data: 'id' },
+const tablaProductos = createDataTable('#productos', route('products.index'), [ 
   { data: 'name' },
   { data: 'stock' },
   { data: 'price' },
