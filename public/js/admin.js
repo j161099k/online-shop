@@ -742,8 +742,6 @@ CREACIÓN DE LA TABLA CON DATATABLES
 */
 
 var tablaProveedores = (0,helpers_createDataTable__WEBPACK_IMPORTED_MODULE_2__["default"])('#proveedores', route('providers.index'), [{
-  data: 'id'
-}, {
   data: 'first_name'
 }, {
   data: 'last_name'

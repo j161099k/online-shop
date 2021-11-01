@@ -52,6 +52,15 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->group(base_path('routes/admin.php'));
         });
+
+        $this->setCustomResolutionLogicForModels([$this, 'resolveEncryptedIds'],
+        [
+            'provider' => \App\Models\Provider::class,
+            'combo' => \App\Models\Combo::class,
+            'product' => \App\Models\Product::class,
+            'order' => \App\Models\Order::class,
+            'ingredient' => \App\Models\Ingredient::class,
+        ]);
     }
 
     /**
@@ -64,5 +73,27 @@ class RouteServiceProvider extends ServiceProvider
         RateLimiter::for('api', function (Request $request) {
             return Limit::perMinute(60)->by(optional($request->user())->id ?: $request->ip());
         });
+    }
+    /**
+     * Configure custom resolution logic for model binding in routes.
+     * 
+     * @param callable $resolutionLogic
+     * A function to be run when resolving a model through the bound parameter.
+     * @param array<string> $parametersBoundToModels 
+     * An array of model names, which are to be bound to a parameter.
+     * 
+     * @return void
+     */
+    protected function setCustomResolutionLogicForModels(callable $resolutionLogic, array $parametersBoundToModels): void
+    {
+        foreach ($parametersBoundToModels as $parameter => $modelName) {
+            Route::bind($parameter, fn ($value) => $resolutionLogic($value, $modelName));
+        }
+    }
+
+    protected function resolveEncryptedIds($encryptedId, $modelName): \Illuminate\Database\Eloquent\Model
+    {
+        $id = \Illuminate\Support\Facades\Crypt::decrypt($encryptedId);
+        return $modelName::findOrFail($id);
     }
 }

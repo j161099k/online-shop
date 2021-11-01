@@ -10,7 +10,7 @@ CREACIÓN DE LA TABLA CON DATATABLES
 ====================================
 */
 const tablaProveedores = createDataTable('#proveedores', route('providers.index'), [
-  { data: 'id' },
+  
   { data: 'first_name' },
   { data: 'last_name' },
   { data: 'phone_number' },

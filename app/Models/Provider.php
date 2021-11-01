@@ -4,16 +4,14 @@ namespace App\Models;
 
 use App\Traits\Addressable;
 use App\Traits\ReadableDates;
+use App\Traits\SecureId;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Provider extends Model
 {
-    use HasFactory;
-    use SoftDeletes;
-    use Addressable;
-    use ReadableDates;
+    use HasFactory, SoftDeletes, Addressable, ReadableDates, SecureId;
 
     public function ingredients()
     {

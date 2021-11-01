@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-8">
                 <x-card class="my-5 p-2">
-                    <x-table id="datatable" :headers="['Id', 'Name', 'Actions']">
+                    <x-table id="datatable" :headers="['Name', 'Actions']">
                         @foreach ($products as $product)
                             <tr>
                                 <td>{{ $product->id }}</td>

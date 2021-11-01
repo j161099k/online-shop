@@ -52,7 +52,7 @@
 
     <x-card>
         <x-table id="proveedores" class="table-sm" data-selectable-rows
-            :headers="[ 'ID', 'Nombre', 'Apellido', 'Número de Telefono', 'Actualizado', 'Acciones' ]" />
+            :headers="['Nombre', 'Apellido', 'Número de Telefono', 'Actualizado', 'Acciones' ]" />
     </x-card>
 @endsection
 
