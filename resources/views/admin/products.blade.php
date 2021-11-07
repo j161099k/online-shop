@@ -34,8 +34,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <x-input name="description" type="text-area" label="Descripción" rows="10">
-                </x-input>
+                <x-textarea name="description" label="Descripción" rows="10" />
             </div>
             <x-slot name="footer">
                 <x-button type="reset" class="btn-sm" style="outline-primary" data-dismiss="modal">

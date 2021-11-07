@@ -16,7 +16,8 @@ class ComboController extends Controller
      */
     public function load()
     {
-        return view('admin.combos');
+        $categories = \App\Models\Category::all();
+        return view('admin.combos', compact('categories'));
     }
 
     /**

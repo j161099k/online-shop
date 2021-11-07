@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ComboController;
 use App\Http\Controllers\Admin\IngredientController;
 use App\Http\Controllers\Admin\OrderController;
@@ -22,6 +23,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/admin/categories/{category}/products', [CategoryController::class, 'findProductsByCategory'])->name('admin.categories.findProductsByCategory');
 
 Route::apiResource('admin/orders', OrderController::class, [
     'except' => ['store', 'destroy'],

@@ -26,6 +26,7 @@ class ProductFactory extends Factory
             'description' => $this->faker->paragraph(),
             'stock' => $this->faker->numberBetween(1, 255),
             'price' => $this->faker->numerify('###.##'),
+            'photo' => 'https://picsum.photos/720/480',
         ];
     }
 }

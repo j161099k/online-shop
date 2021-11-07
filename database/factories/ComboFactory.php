@@ -26,6 +26,7 @@ class ComboFactory extends Factory
             'description' => $this->faker->paragraph(),
             'stock' => $this->faker->numberBetween(1, 200),
             'price' => $this->faker->numerify('###.##'),
+            'photo' => 'https://picsum.photos/720/480',
         ];
     }
 }

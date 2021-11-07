@@ -52,9 +52,15 @@ $('#formularioCombo').on('submit', async function (e) {
   $('#modal-formulario').modal('toggle')
 })
 
+
+$('#category').on('change', async function(e) {
+  const $id = $(this).val()
+  const products = await request(route('admin.categories.findProductsByCategory', {category: $id }))
+})
+
 /* *
 ======================================================
-SE LLENA EL FORMULARIO CON LOS DATOS CORRESPONDIENTES
+SE LLENA EL FORMULARIO CON LOS DATOS CORRESPONDIENTES 
 ======================================================
 */
 
@@ -66,7 +72,6 @@ $('#combos tbody').on('click', '[data-edit]', async function (e) {
   fillFormData($form, $data)
 
   $data.products.map(function (product) {
-    console.log(product)
     tablaProductosCombos.rows.add(product)
   })
 

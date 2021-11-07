@@ -52,7 +52,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->group(base_path('routes/admin.php'));
         });
-
+/* 
         $this->setCustomResolutionLogicForModels([$this, 'resolveEncryptedIds'],
         [
             'provider' => \App\Models\Provider::class,
@@ -60,7 +60,8 @@ class RouteServiceProvider extends ServiceProvider
             'product' => \App\Models\Product::class,
             'order' => \App\Models\Order::class,
             'ingredient' => \App\Models\Ingredient::class,
-        ]);
+            'category' => \App\Models\Category::class,
+        ]); */
     }
 
     /**

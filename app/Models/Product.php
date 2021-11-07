@@ -18,4 +18,9 @@ class Product extends Model
     {
         return $this->belongsToMany(Combo::class);
     }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

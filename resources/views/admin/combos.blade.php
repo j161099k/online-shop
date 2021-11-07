@@ -22,21 +22,33 @@
     {{-- Formulario de registro --}}
     <x-modal label="registroIngrediente" title="Nuevo Combo" id="modal-formulario">
         <x-form id="formularioCombo" data-persist>
-            <div class="form-group">
-                <x-input name="name" label="Nombre" placeholder="Platillo Básico" />
-                <div class="row">
-                    <div class="col-md-6">
-                        <x-input name="stock" type="number" label="Existencia" placeholder="1" />
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <x-input name="name" label="Nombre" placeholder="Platillo Básico" />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <x-input name="stock" type="number" label="Existencia" placeholder="1" />
+                            </div>
+                            <div class="col-md-6">
+                                <x-input name="price" type="number" label="Precio" placeholder="1.50" step="0.01" />
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <x-input name="price" type="number" label="Precio" placeholder="1.50" step="0.01" />
+                    <div class="form-group">
+                        <x-picklist name="category" :options="$categories->pluck('name', 'id')"
+                            label="Categoria" />
+                        <x-textarea name="description" label="Descripción" rows="5" />
+                    </div>
+                </div>
+
+                <div class="col-lg-4 d-none">
+                    <div class="form-group">
+                        <x-picklist name="products" multiple style="height: 54vh;" label="Productos" />
                     </div>
                 </div>
             </div>
-            <div class="form-group">
-                <x-input name="description" type="text-area" label="Descripción" rows="5">
-                </x-input>
-            </div>
+
             <x-slot name="footer">
                 <x-button type="reset" class="btn-sm" style="outline-primary">
                     <span class="d-flex justify-content-center align-items-center" data-dismiss="modal">
@@ -62,7 +74,8 @@
         </x-slot>
         <x-slot name="smallerColumn">
             <x-card class="d-flex flex-grow">
-                <x-table id="combo_products" class="table-sm" data-selectable-rows :headers="['Nombre', 'Existencia', 'Precio']" />
+                <x-table id="combo_products" class="table-sm" data-selectable-rows
+                    :headers="['Nombre', 'Existencia', 'Precio']" />
             </x-card>
         </x-slot>
     </x-two-column-layout>
@@ -70,7 +83,4 @@
 
 @section('js')
     <script src="https://cdn.datatables.net/fixedcolumns/4.0.0/js/fixedColumns.dataTables.js"></script>
-    <script>
-        $('#combo_products').DataTable(); 
-    </script>
 @endsection
