@@ -244,25 +244,52 @@ $('#formularioCombo').on('submit', /*#__PURE__*/function () {
     return _ref.apply(this, arguments);
   };
 }());
+$('#category').on('change', /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(e) {
+    var $id, products;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            $id = $(this).val();
+            _context2.next = 3;
+            return (0,helpers_request__WEBPACK_IMPORTED_MODULE_3__["default"])(route('admin.categories.findProductsByCategory', {
+              category: $id
+            }));
+
+          case 3:
+            products = _context2.sent;
+
+          case 4:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2, this);
+  }));
+
+  return function (_x2) {
+    return _ref2.apply(this, arguments);
+  };
+}());
 /* *
 ======================================================
-SE LLENA EL FORMULARIO CON LOS DATOS CORRESPONDIENTES
+SE LLENA EL FORMULARIO CON LOS DATOS CORRESPONDIENTES 
 ======================================================
 */
 
 $('#combos tbody').on('click', '[data-edit]', /*#__PURE__*/function () {
-  var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(e) {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(e) {
     var _getParentRowAndData, _getParentRowAndData2, parentRow, $data, $form;
 
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
       while (1) {
-        switch (_context2.prev = _context2.next) {
+        switch (_context3.prev = _context3.next) {
           case 0:
             _getParentRowAndData = (0,helpers_getParentRowAndData__WEBPACK_IMPORTED_MODULE_1__["default"])(e.target, tablaCombos), _getParentRowAndData2 = _slicedToArray(_getParentRowAndData, 2), parentRow = _getParentRowAndData2[0], $data = _getParentRowAndData2[1];
             $form = $('#formularioCombo');
             (0,helpers_fillFormData__WEBPACK_IMPORTED_MODULE_4__["default"])($form, $data);
             $data.products.map(function (product) {
-              console.log(product);
               tablaProductosCombos.rows.add(product);
             });
             tablaProductosCombos.draw('page');
@@ -272,14 +299,14 @@ $('#combos tbody').on('click', '[data-edit]', /*#__PURE__*/function () {
 
           case 8:
           case "end":
-            return _context2.stop();
+            return _context3.stop();
         }
       }
-    }, _callee2);
+    }, _callee3);
   }));
 
-  return function (_x2) {
-    return _ref2.apply(this, arguments);
+  return function (_x3) {
+    return _ref3.apply(this, arguments);
   };
 }());
 /* *
@@ -289,33 +316,33 @@ SE BORRA UN REGISTRO A TRAVES DE UNA PETICIÓN DELETE
 */
 
 $('#combos tbody').on('click', '[data-delete]', /*#__PURE__*/function () {
-  var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(e) {
+  var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(e) {
     var _getParentRowAndData3, _getParentRowAndData4, parentRow, $data, $response;
 
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
       while (1) {
-        switch (_context3.prev = _context3.next) {
+        switch (_context4.prev = _context4.next) {
           case 0:
             _getParentRowAndData3 = (0,helpers_getParentRowAndData__WEBPACK_IMPORTED_MODULE_1__["default"])(e.target, tablaCombos), _getParentRowAndData4 = _slicedToArray(_getParentRowAndData3, 2), parentRow = _getParentRowAndData4[0], $data = _getParentRowAndData4[1];
-            _context3.next = 3;
+            _context4.next = 3;
             return (0,helpers_request__WEBPACK_IMPORTED_MODULE_3__["default"])(route('combos.destroy', {
               id: $data.id
             }), 'DELETE');
 
           case 3:
-            $response = _context3.sent;
+            $response = _context4.sent;
             tablaCombos.row(parentRow).remove().draw('page');
 
           case 5:
           case "end":
-            return _context3.stop();
+            return _context4.stop();
         }
       }
-    }, _callee3);
+    }, _callee4);
   }));
 
-  return function (_x3) {
-    return _ref3.apply(this, arguments);
+  return function (_x4) {
+    return _ref4.apply(this, arguments);
   };
 }());
 

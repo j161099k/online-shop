@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 @routes
 
-@section('title', 'Dashboard')
+@section('title', config('app.name'))
 
 @section('content_header')
 @stop
