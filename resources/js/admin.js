@@ -6,30 +6,10 @@
 
 require('./bootstrap-admin')
 
-$(document).on('reset', 'form', function (e) {
-  $(e.target)
-    .find('textarea')
-    .each((i, element) => $(element).text(''))
-})
-
-$(document).on('click', '[data-dismiss]', function (e) {
-  $(this)
-    .closest('.modal')
-    .find('form')
-    .each(function (i, element) {
-      $(this).removeAttr('data-update')
-      $(this).trigger('reset')
-    })
-})
-
-$('[data-selectable-rows]').on('click', 'tr', function (e) {
-  $(this).toggleClass('selected')
-})
-
-require('./controller/ingredients')
-require('./controller/products')
-require('./controller/combos')
-require('./controller/providers')
+require('./controller/admin/ingredients')
+require('./controller/admin/products')
+require('./controller/admin/combos')
+require('./controller/admin/providers')
 
 // window.Vue = require('vue').default;
 

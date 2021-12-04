@@ -19,10 +19,10 @@ mix.alias({
 })
 
 mix
-  // .js('resources/js/app.js', 'public/js')
+  .js('resources/js/app.js', 'public/js')
   .js('resources/js/admin.js', 'public/js/admin.js')
-  .vue()
   .sass('resources/sass/app.scss', 'public/css/admin.css')
-  // .postCss('resources/css/app.css', 'public/css/app.css', [
-  //   require('tailwindcss'),
-  // ])
+  .sass('resources/sass/fontawesome.scss', 'public/css')
+  .postCss('resources/css/app.css', 'public/css/app.css', [
+    require('tailwindcss'),
+  ])

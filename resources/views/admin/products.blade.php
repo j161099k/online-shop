@@ -20,7 +20,7 @@
 
 @section('content')
     {{-- Formulario de registro --}}
-    <x-modal label="registroIngrediente" title="Nuevo Producto" id="modal-formulario">
+    <x-modal label="registroProducto" title="Nuevo Producto" id="modal-formulario">
         <x-form id="formularioProducto" data-persist>
             <div class="form-group">
                 <x-input name="name" label="Nombre" placeholder="Platillo Básico" />
@@ -34,7 +34,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <x-textarea name="description" label="Descripción" rows="10" />
+                <x-input.textarea name="description" label="Descripción" rows="10" />
             </div>
             <x-slot name="footer">
                 <x-button type="reset" class="btn-sm" style="outline-primary" data-dismiss="modal">
@@ -52,6 +52,7 @@
             </x-slot>
         </x-form>
     </x-modal>
+    
     <x-card>
         <x-table id="productos" class="table-sm"
             :headers="['Nombre', 'Existencia', 'Precio' ,'Actualizado en', 'Acciones']" />

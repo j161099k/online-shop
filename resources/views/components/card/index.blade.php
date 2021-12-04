@@ -1,5 +1,5 @@
 <div>
-    <div class="card {{$attributes['class']}}" {{$attributes}}>
+    <div {{$attributes->merge(['class' => 'card']) }}>
         @if (isset($title))
             <div class="card-header">
                 <div class="d-flex justify-content-start align-items-center">

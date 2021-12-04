@@ -1,5 +1,10 @@
+@props([
+    'identifier' => null,
+    'data' => null,
+])
+
 <div>
-    <form {{ $attributes }}>
+    <form {{ $attributes->merge(['data-update'=> $identifier]) }}>
         @csrf
         {{ $slot }}
 

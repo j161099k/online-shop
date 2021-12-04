@@ -1,4 +1,4 @@
-window._ = require('lodash');
+window._ = require('lodash')
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -7,12 +7,14 @@ window._ = require('lodash');
  */
 
 try {
-    window.Popper = require('popper.js').default;
-    window.$ = window.jQuery = require('jquery');
-    require('overlayscrollbars');
-    require('../../vendor/almasaeed2010/adminlte/dist/js/adminlte');
-    require('bootstrap');
-    require('datatables.net');
+  window.Popper = require('popper.js').default
+  window.$ = window.jQuery = require('jquery')
+  require('overlayscrollbars')
+  require('../../vendor/almasaeed2010/adminlte/dist/js/adminlte')
+  require('bootstrap')
+  require('datatables.net')
+  require('./datatables-config')
+  require('./eventListeners')
 } catch (e) {}
 
 /**

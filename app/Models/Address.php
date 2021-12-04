@@ -11,12 +11,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Address extends Model
 {
     use HasFactory, SoftDeletes, ReadableDates, SecureId;
- 
+
     protected $hidden = [
         'addressable_id',
         'addressable_type',
     ];
-    
+
     protected $casts = [
         'created_at' => 'date:Y-M-d H:i:s',
         'updated_at' => 'date:Y-M-d H:i:s',
@@ -30,5 +30,12 @@ class Address extends Model
     public function orders()
     {
         return $this->hasMany(Order::class);
+    }
+
+    public function getFormattedAttribute()
+    {
+        $formatted_address = sprintf('%s #%d, %s', $this->street, $this->ext_number, $this->int_number ?? '');
+        $formatted_address = rtrim($formatted_address, ', ');
+        return $formatted_address;
     }
 }

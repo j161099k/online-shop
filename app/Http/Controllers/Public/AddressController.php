@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
 use App\Models\Address;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
@@ -18,12 +17,8 @@ class AddressController extends Controller
      */
     public function index()
     {
-        $addresses = Address::where([
-            ['addressable_type', User::class], 
-            ['addressable_id', Auth::user()->id]
-        ])->get(['id', 'street']);
-
-        return $addresses;
+        $addresses = Auth::user()->addresses;
+        return view('public.addresses', compact('addresses'));
     }
 
     /**

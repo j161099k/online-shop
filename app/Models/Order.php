@@ -21,25 +21,13 @@ class Order extends Model
         'updated_at',
     ];
 
-    public function orderables()
-    {
-        return $this->morphTo();
-    }
-
-    public function products()
-    {
-        return $this->morphedByMany(Product::class, 'orderable')
-            ->withPivot(['quantity', 'price']);
-    }
-
-    public function combos()
-    {
-        return $this->morphedByMany(Combo::class, 'orderable')
-            ->withPivot(['quantity', 'price']);
-    }
-
     public function address()
     {
         return $this->belongsTo(Address::class);
+    }
+
+    public function cart()
+    {
+        return $this->belongsTo(Cart::class);
     }
 }

@@ -4,7 +4,7 @@
 ])
 
 <div>
-    <div class="modal fade {{ $attributes['class'] }}" id="{{ $attributes['id'] }}" tabindex="-1" role="dialog"
+    <div {{ $attributes->merge(['class' => 'modal fade']) }} tabindex="-1" role="dialog"
         aria-labelledby="{{ $label }}" aria-hidden="true" {{ $attributes }}>
         <div class="modal-dialog" role="document">
             <div class="modal-content">

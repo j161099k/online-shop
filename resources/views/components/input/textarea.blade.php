@@ -1,6 +1,5 @@
 @props([
     'label' => null,
-    'type' => 'text',
 ])
 
 <div>
@@ -8,6 +7,7 @@
         {{ $label }}
     </label>
 
-    <input id="{{ $attributes['name'] }}" type="{{ $type }}" class="form-control {{ $attributes['class'] }}"
-        {{ $attributes }} />
+    <textarea {{ $attributes->merge(['class' => 'form-control']) }}>
+                {{ ltrim($slot) }}
+    </textarea>
 </div>

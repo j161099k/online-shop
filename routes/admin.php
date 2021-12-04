@@ -15,4 +15,8 @@ Route::get('/orders', [OrderController::class, 'load'])->name('admin.orders');
 
 Route::get('/ingredients', [IngredientController::class, 'load'])->name('admin.ingredients');
 Route::get('/products', [ProductController::class, 'load'])->name('admin.products');
-Route::get('/combos', [ComboController::class, 'load'])->name('admin.combos');
+
+Route::prefix('combos')->group(function () {
+    Route::get('/', [ComboController::class, 'load'])->name('admin.combos');
+    Route::get('/{combo}', [ComboController::class, 'edit'])->name('admin.combos.edit');    
+});

@@ -1,5 +1,4 @@
 import getParentRowAndData from 'helpers/getParentRowAndData'
-import createDataTable from 'helpers/createDataTable'
 import request from 'helpers/request'
 import fillFormData from 'helpers/fillFormData'
 import submitForm from 'helpers/submitForm'
@@ -9,18 +8,68 @@ import submitForm from 'helpers/submitForm'
 CREACIÓN DE LA TABLA CON DATATABLES
 ====================================
 */
-const tablaCombos = createDataTable('#combos', route('combos.index'), [
-  { data: 'name' },
-  { data: 'stock' },
-  { data: 'price' },
-  { data: 'updated_at' },
-])
-
-tablaCombos.columns.adjust()
-
-const tablaProductosCombos = $('#productos-relacionados').DataTable({
-  columns: [{ data: 'id' }, { data: 'name' }],
+const tablaCombos = $('#combos').DataTable({
+  serverSide: true,
+  ajax: route('combos.index'),
+  columns: [
+    { data: 'name' },
+    { data: 'stock' },
+    { data: 'price' },
+    { data: 'updated_at' },
+    { data: 'actions' },
+  ],
 })
+
+const tablaProductosCombos = $('#productosCombo').DataTable({
+  serverSide: true,
+  search: false,
+  ajax: route('admin.combos.getProducts', { combo: $('#productosCombo').attr('data-combo') }),
+  columns: [
+    { data: 'name' },
+    { data: 'quantity' },
+    { data: 'actions' },
+  ]
+})
+
+$('#formularioProductoCombo').on('submit', async function (e) {
+  e.preventDefault()
+
+  const $id = $(this).attr('data-addto')
+
+  const $products = $(this)
+    .find('.row')
+    .map(function (i, el) {
+      const $qty = $('input', this).val()
+      const $id = $('select', this).val()
+
+      return { id: $id, quantity: $qty }
+    })
+    .get()
+
+  const response = await request(
+    route('admin.combos.addProducts', { combo: $id }),
+    'POST',
+    { products: $products }  
+  )
+
+  tablaProductosCombos.draw('page')
+})
+
+$('#productosCombo tbody').on('click', '[data-unlink]', async function (e) {
+  const [$row, { id : $id }] = getParentRowAndData(this, tablaProductosCombos)
+  const $comboId = $(this).closest('table').attr('data-combo')
+
+  const result = await request(route('admin.combos.unlinkProduct', { combo: $comboId, product: $id }), 'DELETE')
+
+  if(result === 'deleted') {
+    alert('El producto fue desvinculado exitosamente!')
+    tablaProductosCombos.row($row).remove().draw('page')
+    return;
+  }
+
+  alert('El producto no pudo ser devinculado')
+})
+
 
 /* *
 ====================================================
@@ -52,10 +101,15 @@ $('#formularioCombo').on('submit', async function (e) {
   $('#modal-formulario').modal('toggle')
 })
 
+$('#productosCombo').on('click', '[data-unlink]', function(e) {
+  
+})
 
-$('#category').on('change', async function(e) {
+$('#category').on('change', async function (e) {
   const $id = $(this).val()
-  const products = await request(route('admin.categories.findProductsByCategory', {category: $id }))
+  const products = await request(
+    route('admin.categories.findProductsByCategory', { category: $id }),
+  )
 })
 
 /* *
@@ -96,4 +150,10 @@ $('#combos tbody').on('click', '[data-delete]', async function (e) {
     'DELETE',
   )
   tablaCombos.row(parentRow).remove().draw('page')
+})
+
+$('#combos tbody').on('click', '[data-view]', async function (e) {
+  // console.log("Event.Target:\n", e.target, "\nThis:\n", this);
+  const [, $data] = getParentRowAndData(this, tablaCombos)
+  location.href = route('admin.combos.edit', { combo: $data.id })
 })

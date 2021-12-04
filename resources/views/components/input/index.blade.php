@@ -7,7 +7,5 @@
         {{ $label }}
     </label>
 
-    <textarea id="{{ $attributes['name'] }}" class="form-control {{ $attributes['class'] }}" {{ $attributes }}>
-                {{ trim($slot) }}
-    </textarea>
+    <input {{ $attributes->merge(['class' => 'form-control', 'type' => 'text']) }} />
 </div>

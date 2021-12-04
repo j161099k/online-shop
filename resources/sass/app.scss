@@ -1,15 +1,42 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic');
-@import '~@fortawesome/fontawesome-free/css/all.css';
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic");
+@import "~@fortawesome/fontawesome-free/css/all.css";
 // OverlayScrollbars
-@import '~overlayscrollbars/css/OverlayScrollbars.css';
+@import "~overlayscrollbars/css/OverlayScrollbars.css";
 // iCheck
-@import '~icheck-bootstrap/icheck-bootstrap.css';
+@import "~icheck-bootstrap/icheck-bootstrap.css";
 // AdminLTE
-@import '../../vendor/almasaeed2010/adminlte/dist/css/adminlte.css';
+@import "../../vendor/almasaeed2010/adminlte/dist/css/adminlte.css";
 
-@import url('https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css');
+@import url("https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css");
+
+// @import '_variables.scss';
 
 // Bootstrap
 // Already imported by AdminLTE
-//@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
+
+.pbl- {
+    &option-grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-gap: 10px;
+        grid-auto-rows: minmax(100px, auto);
+    }
+
+    &option {
+        grid-column: 1/6;
+        grid-row: 1;
+        background-color: $blue;
+        display: flex;
+        inset: 0;
+        justify-content: center;
+        align-items: center;
+        border-radius: $border-radius $border-radius;
+        margin: 0.2rem;
+        padding: 0.01rem;
+        width: 7rem;
+        overflow-wrap: break-word;
+        color: white;
+    }
+}

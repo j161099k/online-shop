@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\IngredientController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProviderController;
+use App\Http\Controllers\Public\AddressController;
+use App\Http\Controllers\Public\OrderController as PublicOrderController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +28,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/admin/categories/{category}/products', [CategoryController::class, 'findProductsByCategory'])->name('admin.categories.findProductsByCategory');
 
+Route::prefix('admin/combos')->group(function() {
+    Route::get('/{combo}/products', [ComboController::class, 'getProducts'])->name('admin.combos.getProducts');
+    Route::post('/{combo}/products', [ComboController::class, 'addProducts'])->name('admin.combos.addProducts');
+    Route::delete('/{combo}/products/{product}', [ComboController::class, 'unlinkProduct'])->name('admin.combos.unlinkProduct');
+});
+
 Route::apiResource('admin/orders', OrderController::class, [
     'except' => ['store', 'destroy'],
 ]);
@@ -35,4 +43,9 @@ Route::apiResources([
     'admin/products' => ProductController::class,
     'admin/combos' => ComboController::class,
     'admin/providers' => ProviderController::class,
+]);
+ 
+Route::apiResources([
+    'orders' => PublicOrderController::class,
+    'addresses' => AddressController::class,
 ]);

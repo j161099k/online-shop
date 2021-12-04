@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Combo;
 use App\Models\Order;
 use App\Models\Address;
+use App\Models\Cart;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Provider;
@@ -29,37 +30,57 @@ class DatabaseSeeder extends Seeder
 
         $this->call(OneUserSeeder::class);
 
-        $users = User::factory(10)->create();
-        Provider::factory(5)->create();
-
-        $addresses = Address::factory(15)->create()->where('addressable_type', 'App\\Models\\User');
-
-        Ingredient::factory(45)->create();
-
         $categories = Category::factory(5)->create();
 
-        $products = Product::factory(185)->sequence(
-            fn($sequence)=> [ 'category_id' => $categories->random() ]
+        Product::factory(185)->sequence(
+            fn ($sequence) => ['category_id' => $categories->random()]
         )->create();
 
-        $combo_product = DB::table('combo_product');
+        Combo::factory(25)->create();
 
-        $combos = Combo::factory(25)->create();
+        Cart::factory(10)->create();
 
-        $combos->each(function ($combo) use ($products, $combo_product) {
-            $combo_product->insert([
-                'combo_id' => $combo->id,
-                'product_id' => $products->shift()->id,
-                'quantity' => random_int(1, 5),
-            ]);
-        });
+        $this->createOrderables(10);
 
-        $orderable = DB::table('orderables');
+        // $users = User::factory(10)->create();
+        // Provider::factory(5)->create();
 
+        // Ingredient::factory(45)->create();
+
+
+        // $combo_product = DB::table('combo_product');
+
+        // $combos->each(function ($combo) use ($products, $combo_product) {
+        //     $combo_product->insert([
+        //         'combo_id' => $combo->id,
+        //         'product_id' => $products->shift()->id,
+        //         'quantity' => random_int(1, 5),
+        //     ]);
+        // });
+
+        // $orderable = DB::table('orderables');
+
+      
+    }
+
+    public function createOrderables($quantity)
+    {
+        for ($i = 0; $i < $quantity; $i++) {
+            $this->call(OrderableSeeder::class);
+        }  
+    }
+
+    /*     public function createAddresses()
+    {
+
+        $addresses = Address::factory(15)->create()->where('addressable_type', 'App\\Models\\User');
         $ordersAddresses = $addresses->map(function ($item, $key) {
             return ['address_id' => $item->id];
         })->toArray();
+    }
 
+    public function createOrders($ordersAddresses)
+    {
         Order::factory($users->count())->state(new Sequence(...$ordersAddresses))->create()
             ->each(function ($order) use ($orderable, $products) {
                 $currentProd = $products->shift();
@@ -78,7 +99,7 @@ class DatabaseSeeder extends Seeder
 
                 $order->save();
             });
-    }
+    } */
 
     public function truncateAll($except = [])
     {

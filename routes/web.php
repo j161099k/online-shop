@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Public\AddressController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -14,9 +16,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('root');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('/user/addresses', [AddressController::class, 'index'])->name('user.addresses');
+Route::view('/user/cart', 'public.cart')->name('user.cart');
+
+Route::get('/products/{product}', [HomeController::class, 'showProduct'])->name('product');
+
 
 Route::get('/test', function () {
     $products = App\Models\Product::select('id', 'name')->get();

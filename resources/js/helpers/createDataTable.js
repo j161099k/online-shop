@@ -1,7 +1,5 @@
 const createDataTable = function(tableId, ajaxUrl, columnArray, options) {
   return $(tableId).DataTable({
-    serverSide: true,
-    scrollY: '250px',
     ajax: ajaxUrl,
     columns: [
       ...columnArray,
